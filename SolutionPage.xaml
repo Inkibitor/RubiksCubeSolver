@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:local="clr-namespace:RubiksCubeSolver"
+             x:Class="RubiksCubeSolver.SolutionPage"
+             Title="Solution"
+             BackgroundColor="#212426">
+    <ScrollView>
+        <Grid RowDefinitions="Auto, Auto, Auto, *, Auto" ColumnDefinitions="*, Auto, *">
+            <Label x:Name="CurrentStepLabel"
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   FontSize="Large"
+                   HorizontalOptions="Center"
+                   Margin="10"
+                   TextColor="#61dafb"
+                   FontAttributes="Bold" />
+
+            <!-- Navigation Buttons and Step Counter -->
+            <Grid Grid.Row="1" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center" Padding="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <ImageButton Source="left_arrow.png"
+                             Clicked="OnPreviousClicked"
+                             Grid.Column="0"
+                             BackgroundColor="Transparent"
+                             WidthRequest="50"
+                             HeightRequest="50"
+                             HorizontalOptions="End"
+                             VerticalOptions="Center" />
+
+                <Label x:Name="StepCounterLabel"
+                       FontSize="Large"
+                       Grid.Column="1"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       TextColor="#61dafb"
+                       Margin="10,0"
+                       FontAttributes="Bold" />
+
+                <ImageButton Source="right_arrow.png"
+                             Clicked="OnNextClicked"
+                             Grid.Column="2"
+                             BackgroundColor="Transparent"
+                             WidthRequest="50"
+                             HeightRequest="50"
+                             HorizontalOptions="Start"
+                             VerticalOptions="Center" />
+            </Grid>
+
+            <!-- Unfolded Cube Display -->
+            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Padding="15,15,0,0">
+                <!-- Define the grid structure for the unfolded cube -->
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,Auto,Auto,Auto">
+
+                    <!-- Yellow Face -->
+                    <Grid x:Name="YellowFace" Grid.Row="0" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="30" />
+                        </Grid.ColumnDefinitions>
+                        <Frame x:Name="Face0" BackgroundColor="Grey" Grid.Row="0" Grid.Column="0" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face1" BackgroundColor="Grey" Grid.Row="0" Grid.Column="1" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face2" BackgroundColor="Grey" Grid.Row="0" Grid.Column="2" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face3" BackgroundColor="Grey" Grid.Row="1" Grid.Column="0" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face4" BackgroundColor="Yellow" Grid.Row="1" Grid.Column="1" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face5" BackgroundColor="Grey" Grid.Row="1" Grid.Column="2" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face6" BackgroundColor="Grey" Grid.Row="2" Grid.Column="0" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face7" BackgroundColor="Grey" Grid.Row="2" Grid.Column="1" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face8" BackgroundColor="Grey" Grid.Row="2" Grid.Column="2" CornerRadius="5" Margin="1"/>
+                    </Grid>
+
+                    <!-- Red Face -->
+                    <Grid x:Name="RedFace" Grid.Row="1" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="30" />
+                        </Grid.ColumnDefinitions>
+                        <Frame x:Name="Face9" BackgroundColor="Grey" Grid.Row="0" Grid.Column="0" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face10" BackgroundColor="Grey" Grid.Row="0" Grid.Column="1" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face11" BackgroundColor="Grey" Grid.Row="0" Grid.Column="2" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face12" BackgroundColor="Grey" Grid.Row="1" Grid.Column="0" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face13" BackgroundColor="Red" Grid.Row="1" Grid.Column="1" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face14" BackgroundColor="Grey" Grid.Row="1" Grid.Column="2" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face15" BackgroundColor="Grey" Grid.Row="2" Grid.Column="0" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face16" BackgroundColor="Grey" Grid.Row="2" Grid.Column="1" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face17" BackgroundColor="Grey" Grid.Row="2" Grid.Column="2" CornerRadius="5" Margin="1"/>
+                    </Grid>
+
+                    <!-- Green Face -->
+                    <Grid x:Name="GreenFace" Grid.Row="1" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="30" />
+                        </Grid.ColumnDefinitions>
+                        <Frame x:Name="Face18" BackgroundColor="Grey" Grid.Row="0" Grid.Column="0" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face19" BackgroundColor="Grey" Grid.Row="0" Grid.Column="1" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face20" BackgroundColor="Grey" Grid.Row="0" Grid.Column="2" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face21" BackgroundColor="Grey" Grid.Row="1" Grid.Column="0" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face22" BackgroundColor="Green" Grid.Row="1" Grid.Column="1" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face23" BackgroundColor="Grey" Grid.Row="1" Grid.Column="2" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face24" BackgroundColor="Grey" Grid.Row="2" Grid.Column="0" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face25" BackgroundColor="Grey" Grid.Row="2" Grid.Column="1" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face26" BackgroundColor="Grey" Grid.Row="2" Grid.Column="2" CornerRadius="5" Margin="1"/>
+                    </Grid>
+
+                    <!-- Orange Face -->
+                    <Grid x:Name="OrangeFace" Grid.Row="1" Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="30" />
+                        </Grid.ColumnDefinitions>
+                        <Frame x:Name="Face27" BackgroundColor="Grey" Grid.Row="0" Grid.Column="0" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face28" BackgroundColor="Grey" Grid.Row="0" Grid.Column="1" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face29" BackgroundColor="Grey" Grid.Row="0" Grid.Column="2" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face30" BackgroundColor="Grey" Grid.Row="1" Grid.Column="0" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face31" BackgroundColor="Orange" Grid.Row="1" Grid.Column="1" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face32" BackgroundColor="Grey" Grid.Row="1" Grid.Column="2" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face33" BackgroundColor="Grey" Grid.Row="2" Grid.Column="0" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face34" BackgroundColor="Grey" Grid.Row="2" Grid.Column="1" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face35" BackgroundColor="Grey" Grid.Row="2" Grid.Column="2" CornerRadius="5" Margin="1"/>
+                    </Grid>
+
+                    <!-- Blue Face -->
+                    <Grid x:Name="BlueFace" Grid.Row="1" Grid.Column="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="30" />
+                        </Grid.ColumnDefinitions>
+                        <Frame x:Name="Face36" BackgroundColor="Grey" Grid.Row="0" Grid.Column="0" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face37" BackgroundColor="Grey" Grid.Row="0" Grid.Column="1" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face38" BackgroundColor="Grey" Grid.Row="0" Grid.Column="2" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face39" BackgroundColor="Grey" Grid.Row="1" Grid.Column="0" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face40" BackgroundColor="Blue" Grid.Row="1" Grid.Column="1" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face41" BackgroundColor="Grey" Grid.Row="1" Grid.Column="2" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face42" BackgroundColor="Grey" Grid.Row="2" Grid.Column="0" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face43" BackgroundColor="Grey" Grid.Row="2" Grid.Column="1" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face44" BackgroundColor="Grey" Grid.Row="2" Grid.Column="2" CornerRadius="5" Margin="1"/>
+                    </Grid>
+
+                    <!-- White Face -->
+                    <Grid x:Name="WhiteFace" Grid.Row="2" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="30" />
+                        </Grid.ColumnDefinitions>
+                        <Frame x:Name="Face45" BackgroundColor="Grey" Grid.Row="0" Grid.Column="0" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face46" BackgroundColor="Grey" Grid.Row="0" Grid.Column="1" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face47" BackgroundColor="Grey" Grid.Row="0" Grid.Column="2" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face48" BackgroundColor="Grey" Grid.Row="1" Grid.Column="0" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face49" BackgroundColor="White" Grid.Row="1" Grid.Column="1" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face50" BackgroundColor="Grey" Grid.Row="1" Grid.Column="2" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face51" BackgroundColor="Grey" Grid.Row="2" Grid.Column="0" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face52" BackgroundColor="Grey" Grid.Row="2" Grid.Column="1" CornerRadius="5" Margin="1"/>
+                        <Frame x:Name="Face53" BackgroundColor="Grey" Grid.Row="2" Grid.Column="2" CornerRadius="5" Margin="1"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <!-- Video Display -->
+            <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" VerticalOptions="Center" HorizontalOptions="Center">
+                <toolkit:MediaElement x:Name="VideoPlayer"
+                                      WidthRequest="250"
+                                      HeightRequest="250"
+                                      Aspect="AspectFill"
+                                      Margin="0"
+                                      BackgroundColor="#212426"
+                                      ShouldAutoPlay="True"
+                                      ShouldShowPlaybackControls="False"
+                                      ShouldLoopPlayback="True"
+                                      HorizontalOptions="Center" />
+            </Grid>
+        </Grid>
+    </ScrollView>
+</ContentPage>
