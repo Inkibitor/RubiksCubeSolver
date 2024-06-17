@@ -26,7 +26,6 @@ namespace RubiksCubeSolver
                     if (child is Frame frame)
                     {
                         int boxIndex = GetBoxIndex(frame);
-                        // Skip central boxes (4, 13, 22, 31, 40, 49)
                         if (boxIndex == 4 || boxIndex == 13 || boxIndex == 22 || boxIndex == 31 || boxIndex == 40 || boxIndex == 49)
                         {
                             continue;
@@ -50,8 +49,8 @@ namespace RubiksCubeSolver
             int boxIndex = GetBoxIndex(frame);
             if (boxIndex != -1)
             {
-                var colorChars = new[] { 'r', 'g', 'b', 'y', 'o', 'w'};
-                var colors = new[] { Colors.Red, Colors.Green, Colors.Blue, Colors.Yellow, Colors.Orange, Colors.White};
+                var colorChars = new[] { 'r', 'g', 'b', 'y', 'o', 'w' };
+                var colors = new[] { Colors.Red, Colors.Green, Colors.Blue, Colors.Yellow, Colors.Orange, Colors.White };
                 var selectedColor = _selectedColorButton.BackgroundColor;
                 var index = Array.IndexOf(colors, selectedColor);
                 if (index != -1)
@@ -100,7 +99,6 @@ namespace RubiksCubeSolver
 
         private bool HasEmptyCells()
         {
-            // Проверка на наличие клеток серого цвета
             var grids = new[] { RedFace, OrangeFace, GreenFace, BlueFace, YellowFace, WhiteFace };
             foreach (var grid in grids)
             {
@@ -118,50 +116,81 @@ namespace RubiksCubeSolver
             return false;
         }
 
-        private void OnSolveCubeClicked(object sender, EventArgs e)
+        private async void OnSolveCubeClicked(object sender, EventArgs e)
         {
             if (HasEmptyCells())
             {
-                DisplayAlert("Error", "This cube could not be solved, fix your colors", "OK");
+                await DisplayAlert("Error", "This cube could not be solved, fix your colors", "OK");
                 return;
             }
 
-            if (SolveCube())
+            if (_rubiksCube.FridrichGetCubeState() == "gggggggggooooooooobbbbbbbbbrrrrrrrrryyyyyyyyywwwwwwwww")
             {
-                ReadyLayout.IsVisible = true;
+                await DisplayAlert("Error", "This cube is already solved", "OK");
+                return;
+            }
+
+            // Show a slight delay to give the user feedback of ongoing processing
+            await Task.Delay(100);
+
+            // Run the cube-solving logic asynchronously to avoid blocking the UI thread
+            bool solved = await Task.Run(() => SolveCube());
+
+            if (solved)
+            {
+                string FridrichCurrentState = _rubiksCube.FridrichGetCubeState();
+                string KociembaCurrentState = _rubiksCube.KociembaGetCubeState();
+
+                // Pre-initialize the next page
+                var showSolutionPage = await Task.Run(() => new ShowSolutionPage(FridrichCurrentState, KociembaCurrentState));
+
+                // Navigate to the pre-initialized page
+                await Navigation.PushAsync(showSolutionPage);
             }
             else
             {
-                DisplayAlert("Error", "This cube could not be solved, fix your colors", "OK");
+                await DisplayAlert("Error", "This cube could not be solved, fix your colors", "OK");
             }
         }
 
-        private void OnReadyButtonClicked(object sender, EventArgs e)
-        {
-            ReadyLayout.IsVisible = false;
-
-            string currentState = _rubiksCube.GetCubeState();
-            var solver = new FridrichSolver(currentState);
-
-            solver.Solve();
-
-            var solutionSteps = solver.Solution.Split(' ').ToList();
-            Navigation.PushAsync(new SolutionPage(solutionSteps, currentState));
-        }
-
-        private void OnCancelButtonClicked(object sender, EventArgs e)
-        {
-            ReadyLayout.IsVisible = false;
-        }
 
         private bool SolveCube()
         {
-            string currentState = _rubiksCube.GetCubeState();
+            string currentState = _rubiksCube.FridrichGetCubeState();
             var solver = new FridrichSolver(currentState);
 
             solver.Solve();
 
             return solver.IsSolved;
+        }
+
+        private void OnResetButtonClicked(object sender, EventArgs e)
+        {
+            ResetFaceColors(WhiteFace, Colors.White);
+            ResetFaceColors(RedFace, Colors.Red);
+            ResetFaceColors(GreenFace, Colors.Green);
+            ResetFaceColors(YellowFace, Colors.Yellow);
+            ResetFaceColors(BlueFace, Colors.Blue);
+            ResetFaceColors(OrangeFace, Colors.Orange);
+        }
+
+        private void ResetFaceColors(Grid face, Color centerColor)
+        {
+            foreach (var child in face.Children)
+            {
+                if (child is Frame frame)
+                {
+                    int boxIndex = GetBoxIndex(frame);
+                    if (boxIndex == 4 || boxIndex == 13 || boxIndex == 22 || boxIndex == 31 || boxIndex == 40 || boxIndex == 49)
+                    {
+                        frame.BackgroundColor = centerColor;
+                    }
+                    else
+                    {
+                        frame.BackgroundColor = Colors.Gray;
+                    }
+                }
+            }
         }
     }
 }

@@ -14,6 +14,7 @@
             <Setter Property="BorderWidth" Value="0"/>
         </Style>
     </ContentPage.Resources>
+    
 
     <ContentPage.Content>
         <StackLayout>
@@ -46,9 +47,9 @@
 
                 <!-- Red border for the red face -->
                 <Grid Grid.Row="0" Grid.Column="2">
-                    <BoxView Color="Blue" HeightRequest="4" WidthRequest="110" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Margin="-6"/>
-                    <BoxView Color="White" HeightRequest="110" WidthRequest="4" HorizontalOptions="Start" VerticalOptions="FillAndExpand" Margin="-6"/>
-                    <BoxView Color="Yellow" HeightRequest="110" WidthRequest="4" HorizontalOptions="End" VerticalOptions="FillAndExpand" Margin="-6"/>
+                    <BoxView Color="Blue" HeightRequest="4" WidthRequest="80" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Margin="-7"/>
+                    <BoxView Color="White" HeightRequest="80" WidthRequest="4" HorizontalOptions="Start" VerticalOptions="FillAndExpand" Margin="-7"/>
+                    <BoxView Color="Yellow" HeightRequest="80" WidthRequest="4" HorizontalOptions="End" VerticalOptions="FillAndExpand" Margin="-7"/>
 
                     <!-- Красная грань -->
                     <Grid x:Name="RedFace">
@@ -76,9 +77,9 @@
 
                 <!-- White border for the white face -->
                 <Grid Grid.Row="1" Grid.Column="1">
-                    <BoxView Color="Red" HeightRequest="4" WidthRequest="110" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Margin="-6"/>
-                    <BoxView Color="Blue" HeightRequest="110" WidthRequest="4" HorizontalOptions="Start" VerticalOptions="FillAndExpand" Margin="-6"/>
-                    <BoxView Color="Orange" HeightRequest="4" WidthRequest="110" HorizontalOptions="FillAndExpand" VerticalOptions="End" Margin="-6"/>
+                    <BoxView Color="Red" HeightRequest="4" WidthRequest="80" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Margin="-7"/>
+                    <BoxView Color="Blue" HeightRequest="80" WidthRequest="4" HorizontalOptions="Start" VerticalOptions="FillAndExpand" Margin="-7"/>
+                    <BoxView Color="Orange" HeightRequest="4" WidthRequest="80" HorizontalOptions="FillAndExpand" VerticalOptions="End" Margin="-7"/>
 
                     <!-- Белая грань -->
                     <Grid x:Name="WhiteFace">
@@ -133,9 +134,9 @@
 
                 <!-- Yellow border for the yellow face -->
                 <Grid Grid.Row="1" Grid.Column="3">
-                    <BoxView Color="Red" HeightRequest="4" WidthRequest="110" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Margin="-6"/>
-                    <BoxView Color="Orange" HeightRequest="4" WidthRequest="110" HorizontalOptions="FillAndExpand" VerticalOptions="End" Margin="-6"/>
-                    <BoxView Color="Blue" HeightRequest="110" WidthRequest="4" HorizontalOptions="End" VerticalOptions="FillAndExpand" Margin="-6"/>
+                    <BoxView Color="Red" HeightRequest="4" WidthRequest="80" HorizontalOptions="FillAndExpand" VerticalOptions="Start" Margin="-7"/>
+                    <BoxView Color="Orange" HeightRequest="4" WidthRequest="80" HorizontalOptions="FillAndExpand" VerticalOptions="End" Margin="-7"/>
+                    <BoxView Color="Blue" HeightRequest="80" WidthRequest="4" HorizontalOptions="End" VerticalOptions="FillAndExpand" Margin="-7"/>
 
                     <!-- Желтая грань -->
                     <Grid x:Name="YellowFace">
@@ -163,8 +164,8 @@
 
                 <!-- Orange border for the orange face -->
                 <Grid Grid.Row="2" Grid.Column="2">
-                    <BoxView Color="White" HeightRequest="110" WidthRequest="4" HorizontalOptions="Start" VerticalOptions="FillAndExpand" Margin="-6"/>
-                    <BoxView Color="Yellow" HeightRequest="110" WidthRequest="4" HorizontalOptions="End" VerticalOptions="FillAndExpand" Margin="-6"/>
+                    <BoxView Color="White" HeightRequest="80" WidthRequest="4" HorizontalOptions="Start" VerticalOptions="FillAndExpand" Margin="-7"/>
+                    <BoxView Color="Yellow" HeightRequest="80" WidthRequest="4" HorizontalOptions="End" VerticalOptions="FillAndExpand" Margin="-7"/>
 
                     <!-- Оранжевая грань -->
                     <Grid x:Name="OrangeFace">
@@ -192,9 +193,9 @@
 
                 <!-- Blue border for the blue face -->
                 <Grid Grid.Row="3" Grid.Column="2">
-                    <BoxView Color="White" HeightRequest="110" WidthRequest="4" HorizontalOptions="Start" VerticalOptions="FillAndExpand" Margin="-6"/>
-                    <BoxView Color="Red" HeightRequest="4" WidthRequest="110" HorizontalOptions="FillAndExpand" VerticalOptions="End" Margin="-6"/>
-                    <BoxView Color="Yellow" HeightRequest="110" WidthRequest="4" HorizontalOptions="End" VerticalOptions="FillAndExpand" Margin="-6"/>
+                    <BoxView Color="White" HeightRequest="80" WidthRequest="4" HorizontalOptions="Start" VerticalOptions="FillAndExpand" Margin="-7"/>
+                    <BoxView Color="Red" HeightRequest="4" WidthRequest="80" HorizontalOptions="FillAndExpand" VerticalOptions="End" Margin="-7"/>
+                    <BoxView Color="Yellow" HeightRequest="80" WidthRequest="4" HorizontalOptions="End" VerticalOptions="FillAndExpand" Margin="-7"/>
 
                     <!-- Синяя грань -->
                     <Grid x:Name="BlueFace">
@@ -220,58 +221,11 @@
                     </Grid>
                 </Grid>
             </Grid>
-            <Button Text="Get solution" Clicked="OnSolveCubeClicked" HorizontalOptions="Center" VerticalOptions="Center" Margin="0, 35, 0, 0"
-                    FontFamily="Monospace" FontAttributes="Bold" FontSize="Medium" CornerRadius="20" BorderColor="#FFFFFF" Background="#9C51A4"/>
-
-            <!-- Popup для подтверждения решения -->
-            <StackLayout x:Name="ReadyLayout" IsVisible="False" BackgroundColor="Transparent" HorizontalOptions="Center" 
-                         VerticalOptions="CenterAndExpand" Padding="0" HeightRequest="1150">
-                <Frame CornerRadius="10" VerticalOptions="Center" HorizontalOptions="Center" 
-                       WidthRequest="350" HeightRequest="450" Padding="15" BorderColor="#FFBC27" BackgroundColor="#653A74">
-                    <StackLayout>
-                        <Label Text="Position your cube as shown in the image - green face in front (looking at you), 
-                               orange face on the right, yellow on top, red on the left and white on the bottom. 
-                               Do not rotate its orientation when solving. This is important for your assembly!" 
-                               TextColor="#FFF2F2" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontSize="Medium"
-                               FontAttributes="Bold" FontFamily="Monospace" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,0,0,25"/>
-
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="End" HeightRequest="150">
-                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="40" />
-                                    <RowDefinition Height="40" />
-                                    <RowDefinition Height="40" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="40" />
-                                    <ColumnDefinition Width="40" />
-                                    <ColumnDefinition Width="40" />
-                                </Grid.ColumnDefinitions>
-                                <BoxView BackgroundColor="Yellow" HeightRequest="4" WidthRequest="100" Margin="79, -49, 0, 0"/>
-                                <BoxView BackgroundColor="Red" HeightRequest="100" WidthRequest="4" Margin="0, 79, 48, 0"/>
-                                <BoxView BackgroundColor="Orange" HeightRequest="100" WidthRequest="4" Margin="0, 79, -207, 0"/>
-                                <BoxView BackgroundColor="White" HeightRequest="4" WidthRequest="100" Margin="79, 210, 0, 0"/>
-                                
-                                <Frame BackgroundColor="Grey" Grid.Row="0" Grid.Column="0" CornerRadius="5" Margin="1"/>
-                                <Frame BackgroundColor="Grey" Grid.Row="0" Grid.Column="1" CornerRadius="5" Margin="1"/>
-                                <Frame BackgroundColor="Grey" Grid.Row="0" Grid.Column="2" CornerRadius="5" Margin="1"/>
-                                <Frame BackgroundColor="Grey" Grid.Row="1" Grid.Column="0" CornerRadius="5" Margin="1"/>
-                                <Frame BackgroundColor="Green" Grid.Row="1" Grid.Column="1" CornerRadius="5" Margin="1"/>
-                                <Frame BackgroundColor="Grey" Grid.Row="1" Grid.Column="2" CornerRadius="5" Margin="1"/>
-                                <Frame BackgroundColor="Grey" Grid.Row="2" Grid.Column="0" CornerRadius="5" Margin="1"/>
-                                <Frame BackgroundColor="Grey" Grid.Row="2" Grid.Column="1" CornerRadius="5" Margin="1"/>
-                                <Frame BackgroundColor="Grey" Grid.Row="2" Grid.Column="2" CornerRadius="5" Margin="1"/>
-                            </Grid>
-                        </StackLayout>
-                        <Grid>
-                            <Button Text="Ready" Clicked="OnReadyButtonClicked" WidthRequest="100" Margin="-135,0,0,0"
-                                FontFamily="Monospace" FontAttributes="Bold" FontSize="Medium" CornerRadius="20" BorderColor="#FFFFFF" Background="#EE0000" />
-                            <Button Text="Cancel" Clicked="OnCancelButtonClicked" WidthRequest="100" HorizontalOptions="Center" Margin="135,0,0,0"
-                                FontFamily="Monospace" FontAttributes="Bold" FontSize="Medium" CornerRadius="20" BorderColor="#FFFFFF" Background="#EE0000" />
-                        </Grid>
-
-                    </StackLayout>
-                </Frame>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="15">
+                <Button Text="Get solution" Clicked="OnSolveCubeClicked" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"
+                        FontFamily="Monospace" FontAttributes="Bold" FontSize="Medium" CornerRadius="20" BorderWidth="1.5" BorderColor="White"  Background="#653A74"/>
+                <Button Text="Reset colors" Clicked="OnResetButtonClicked" HorizontalOptions="Center" VerticalOptions="Center" Margin="15"
+                        FontFamily="Monospace" FontAttributes="Bold" FontSize="Medium" CornerRadius="20" BorderWidth="1.5" BorderColor="White" Background="#653A74"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

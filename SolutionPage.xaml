@@ -4,7 +4,6 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:local="clr-namespace:RubiksCubeSolver"
              x:Class="RubiksCubeSolver.SolutionPage"
-             Title="Solution"
              BackgroundColor="#212426">
     <ScrollView>
         <Grid RowDefinitions="Auto, Auto, Auto, *, Auto" ColumnDefinitions="*, Auto, *">
@@ -15,6 +14,7 @@
                    HorizontalOptions="Center"
                    Margin="10"
                    TextColor="#61dafb"
+                   FontFamily="Monospace" 
                    FontAttributes="Bold" />
 
             <!-- Navigation Buttons and Step Counter -->
@@ -41,6 +41,7 @@
                        VerticalOptions="Center"
                        TextColor="#61dafb"
                        Margin="10,0"
+                       FontFamily="Monospace" 
                        FontAttributes="Bold" />
 
                 <ImageButton Source="right_arrow.png"
@@ -54,7 +55,7 @@
             </Grid>
 
             <!-- Unfolded Cube Display -->
-            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Padding="15,15,0,0">
+            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Padding="15,35,0,0"> 
                 <!-- Define the grid structure for the unfolded cube -->
                 <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,Auto,Auto,Auto">
 

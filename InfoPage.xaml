@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RubiksCubeSolver.InfoPage"
+             BackgroundColor="#212426">
+    <ScrollView>
+        <StackLayout Padding="20">
+
+            <Label Text="The Rubik's Cube, invented in 1974, is one of the most popular and challenging puzzles in the world. Today, there are numerous methods for solving it, ranging from basic approaches for beginners to advanced techniques for professionals."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,10"/>
+
+            <Label Text="Fun fact: There are a total of 43 quintillion (43 * 10^18) possible states of a Rubik's Cube, but an optimal solution can be found in no more than 20 moves. This phenomenon is known as 'God's Number.'"
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,20"/>
+
+            <Label Text="Understanding the Cube Layout" 
+                   FontSize="20" 
+                   TextColor="#FF5733" 
+                   FontFamily="Monospace"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" 
+                   Margin="0,20,0,10"/>
+
+            <Label Text="In this app, you will see the layout of the Rubik's Cube, as shown in the image below:" 
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,10"/>
+
+            <Grid HorizontalOptions="Center" VerticalOptions="Start" HeightRequest="150">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="40" />
+                </Grid.ColumnDefinitions>
+                <BoxView BackgroundColor="Red" HeightRequest="4" WidthRequest="80" Margin="79, -49, 0, 0"/>
+                <BoxView BackgroundColor="Blue" HeightRequest="80" WidthRequest="4" Margin="0, 79, 48, 0"/>
+                <BoxView BackgroundColor="Green" HeightRequest="80" WidthRequest="4" Margin="0, 79, -207, 0"/>
+                <BoxView BackgroundColor="Orange" HeightRequest="4" WidthRequest="80" Margin="79, 210, 0, 0"/>
+                <Frame BackgroundColor="Grey" Grid.Row="0" Grid.Column="0" CornerRadius="5" Margin="1"/>
+                <Frame BackgroundColor="Grey" Grid.Row="0" Grid.Column="1" CornerRadius="5" Margin="1"/>
+                <Frame BackgroundColor="Grey" Grid.Row="0" Grid.Column="2" CornerRadius="5" Margin="1"/>
+                <Frame BackgroundColor="Grey" Grid.Row="1" Grid.Column="0" CornerRadius="5" Margin="1"/>
+                <Frame BackgroundColor="White" Grid.Row="1" Grid.Column="1" CornerRadius="5" Margin="1"/>
+                <Frame BackgroundColor="Grey" Grid.Row="1" Grid.Column="2" CornerRadius="5" Margin="1"/>
+                <Frame BackgroundColor="Grey" Grid.Row="2" Grid.Column="0" CornerRadius="5" Margin="1"/>
+                <Frame BackgroundColor="Grey" Grid.Row="2" Grid.Column="1" CornerRadius="5" Margin="1"/>
+                <Frame BackgroundColor="Grey" Grid.Row="2" Grid.Column="2" CornerRadius="5" Margin="1"/>
+            </Grid>
+
+            <Label Text="Colored strips placed next to the faces indicate adjacent faces, helping you understand the correct orientation of the cube."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,10"/>
+
+            <Label Text="For example, a red strip next to the white face indicates that this face is adjacent to the red face of the cube. Using these indications, you can accurately orient the cube when entering colors and following algorithms."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,20"/>
+
+            <Label Text="Move Notations" 
+                   FontSize="20" 
+                   TextColor="#FF5733" 
+                   FontFamily="Monospace"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" 
+                   Margin="0,20,0,10"/>
+
+            <Label Text="To describe the movements of the Rubik's Cube, the following notations are used:"
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,10"/>
+
+            <Label Text="• U (Up): Rotate the top face clockwise."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,5"/>
+
+            <Label Text="• U' (Up Prime): Rotate the top face counterclockwise."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,5"/>
+
+            <Label Text="• U2: Rotate the top face 180 degrees."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,20"/>
+
+            <Label Text="Understanding the Faces" 
+                   FontSize="20" 
+                   TextColor="#FF5733" 
+                   FontFamily="Monospace"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" 
+                   Margin="0,20,0,10"/>
+
+            <Label Text="Each face of the Rubik's Cube is denoted by a specific letter:"
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,10"/>
+
+            <Label Text="• F (Front): The front face (facing you)."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,5"/>
+
+            <Label Text="• U (Up): The top face."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,5"/>
+
+            <Label Text="• R (Right): The right face."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,5"/>
+
+            <Label Text="• L (Left): The left face."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,5"/>
+
+            <Label Text="• D (Down): The bottom face."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,5"/>
+
+            <Label Text="• B (Back): The back face (facing away from you)."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,20"/>
+
+            <Label Text="These notations will help you follow instructions and learn algorithms for solving the cube."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,20"/>
+
+            <Image Source="cubefaces.png"
+                   Aspect="AspectFit"
+                   HeightRequest="200"
+                   Margin="0,0,0,20"/>
+            
+            <Label Text="Basic Solving Logic" 
+                   FontSize="20" 
+                   TextColor="#FF5733" 
+                   FontFamily="Monospace"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" 
+                   Margin="0,20,0,10"/>
+
+            <Label Text="Solving the Rubik's Cube involves several steps:"
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,10"/>
+
+            <Label Text="• Solving the White Cross: Start with the top face and form a cross by correctly positioning the white edges."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,5"/>
+
+            <Label Text="• Solving the White Corners: Fill in the top layer with the white corner pieces."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,5"/>
+
+            <Label Text="• Solving the Middle Layer: Move the edges to complete the second layer."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,5"/>
+
+            <Label Text="• Forming the Yellow Cross: Create a cross on the opposite (yellow) face."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,5"/>
+
+            <Label Text="• Positioning the Yellow Edges: Correctly place the yellow edges."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,5"/>
+
+            <Label Text="• Positioning the Yellow Corners: Correctly place the yellow corners."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,5"/>
+
+            <Label Text="• Orienting the Yellow Corners: Flip the yellow corners to complete the cube."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,20"/>
+
+            <Label Text="Fridrich Method (CFOP)" 
+                   FontSize="20" 
+                   TextColor="#FF5733" 
+                   FontFamily="Monospace"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" 
+                   Margin="0,20,0,10"/>
+
+            <Label Text="The Fridrich Method, or CFOP (Cross, F2L, OLL, PLL), is one of the most popular and fastest methods for solving the Rubik's Cube."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,10"/>
+
+            <Label Text="• Cross: First, solve the cross on the white face."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,5"/>
+
+            <Label Text="• F2L (First Two Layers): Then solve the first two layers by positioning the corner and edge pieces."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,5"/>
+
+            <Label Text="• OLL (Orientation of Last Layer): Next, orient all the pieces of the last layer so that the top face is a single color."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,5"/>
+
+            <Label Text="• PLL (Permutation of Last Layer): Finally, permute the pieces of the last layer to complete the cube."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,20"/>
+
+            <Label Text="ZZ Method" 
+                   FontSize="20" 
+                   TextColor="#FF5733" 
+                   FontFamily="Monospace"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" 
+                   Margin="0,20,0,10"/>
+
+            <Label Text="The ZZ Method offers a unique approach to solving the Rubik's Cube and is particularly popular among speedcubers."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,10"/>
+
+            <Label Text="• EOLine: Start by orienting all the edges and forming a line on the bottom face."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,5"/>
+
+            <Label Text="• F2L: Then solve the first two layers using the pre-oriented edges."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,5"/>
+
+            <Label Text="• LL (Last Layer): Complete the cube by using various algorithms for the last layer."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,20"/>
+
+            <Label Text="Algorithm Search in ZZ Method" 
+                   FontSize="20" 
+                   TextColor="#FF5733" 
+                   FontFamily="Monospace"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" 
+                   Margin="0,20,0,10"/>
+
+            <Label Text="The ZZ Method requires learning and memorizing numerous algorithms for edge orientation and permutation. Our app features a convenient search and collection of algorithms, organized by solving stages. You can easily find the required algorithm using filters and categories, and view visual instructions for its execution."
+                   FontSize="16" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   Margin="0,0,0,20"/>
+
+            <Label Text="App created by Stepan Rakin"
+                   FontSize="12" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   HorizontalOptions="Center" 
+                   Margin="0,20,0,0"/>
+
+            <Label Text="Contact Information: stepanrakin666@gmail.com"
+                   FontSize="12" 
+                   TextColor="White"
+                   FontFamily="Monospace"
+                   HorizontalOptions="Center" 
+                   Margin="0,0,0,20"/>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

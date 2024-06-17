@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RubiksCubeSolver.ShowSolutionPage"
+             BackgroundColor="#212426">
+    
+    <StackLayout Padding="10">
+        <Label Text="Available solutions" 
+               HorizontalOptions="Center" 
+               VerticalOptions="Start" 
+               TextColor="White"  
+               FontSize="Large"
+               FontAttributes="Bold" FontFamily="Monospace"/>
+
+        <ListView x:Name="SolutionsListView"
+          ItemsSource="{Binding Solutions}" 
+          HasUnevenRows="True"
+          SeparatorVisibility="None"
+          SelectionMode="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame BorderColor="LightGray" CornerRadius="5" Padding="10" Margin="5">
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding Description}" 
+                               TextColor="Gray" 
+                               FontSize="Medium"
+                               FontAttributes="Bold" FontFamily="Monospace"/>
+                                <Label Text="{Binding StepsCount}" 
+                               FontSize="Small"
+                               TextColor="Gray" 
+                               FontAttributes="Bold" FontFamily="Monospace" Margin="3"/>
+                                <Button Text="Show Solution"
+                                CommandParameter="{Binding .}"
+                                Clicked="OnSolutionButtonClicked"
+                                BackgroundColor="LightBlue"
+                                TextColor="White"
+                                Visual="Material" 
+                                FontSize="Medium"
+                                FontAttributes="Bold" FontFamily="Monospace"/>
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+        <StackLayout x:Name="ReadyLayout" IsVisible="False" BackgroundColor="Transparent" HorizontalOptions="Center" 
+                     VerticalOptions="CenterAndExpand" Padding="0" HeightRequest="800">
+            <Frame CornerRadius="10" VerticalOptions="Center" HorizontalOptions="Center" 
+                   WidthRequest="350" HeightRequest="450" Padding="15" BorderColor="#FFBC27" BackgroundColor="#653A74">
+                <StackLayout>
+                    <Label Text="Position your cube as shown in the image - green face in front (looking at you), 
+                               orange face on the right, yellow on top, red on the left and white on the bottom. 
+                               Do not rotate its orientation when solving. This is important for your assembly!" 
+                           TextColor="#FFF2F2" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" FontSize="Medium"
+                           FontAttributes="Bold" FontFamily="Monospace" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,0,0,25"/>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="End" HeightRequest="150">
+                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="40" />
+                            </Grid.ColumnDefinitions>
+                            <BoxView BackgroundColor="Yellow" HeightRequest="4" WidthRequest="80" Margin="79, -49, 0, 0"/>
+                            <BoxView BackgroundColor="Red" HeightRequest="80" WidthRequest="4" Margin="0, 79, 48, 0"/>
+                            <BoxView BackgroundColor="Orange" HeightRequest="80" WidthRequest="4" Margin="0, 79, -207, 0"/>
+                            <BoxView BackgroundColor="White" HeightRequest="4" WidthRequest="80" Margin="79, 210, 0, 0"/>
+                            <Frame BackgroundColor="Grey" Grid.Row="0" Grid.Column="0" CornerRadius="5" Margin="1"/>
+                            <Frame BackgroundColor="Grey" Grid.Row="0" Grid.Column="1" CornerRadius="5" Margin="1"/>
+                            <Frame BackgroundColor="Grey" Grid.Row="0" Grid.Column="2" CornerRadius="5" Margin="1"/>
+                            <Frame BackgroundColor="Grey" Grid.Row="1" Grid.Column="0" CornerRadius="5" Margin="1"/>
+                            <Frame BackgroundColor="Green" Grid.Row="1" Grid.Column="1" CornerRadius="5" Margin="1"/>
+                            <Frame BackgroundColor="Grey" Grid.Row="1" Grid.Column="2" CornerRadius="5" Margin="1"/>
+                            <Frame BackgroundColor="Grey" Grid.Row="2" Grid.Column="0" CornerRadius="5" Margin="1"/>
+                            <Frame BackgroundColor="Grey" Grid.Row="2" Grid.Column="1" CornerRadius="5" Margin="1"/>
+                            <Frame BackgroundColor="Grey" Grid.Row="2" Grid.Column="2" CornerRadius="5" Margin="1"/>
+                        </Grid>
+                    </StackLayout>
+                    <Grid>
+                        <Button Text="Ready" Clicked="OnReadyButtonClicked" WidthRequest="100" Margin="-135,0,0,0"
+                            FontFamily="Monospace" FontAttributes="Bold" FontSize="Medium" CornerRadius="20" BorderWidth="1.5" BorderColor="White" Background="#EE0000" />
+                        <Button Text="Cancel" Clicked="OnCancelButtonClicked" WidthRequest="100" HorizontalOptions="Center" Margin="135,0,0,0"
+                            FontFamily="Monospace" FontAttributes="Bold" FontSize="Medium" CornerRadius="20" BorderWidth="1.5" BorderColor="White" Background="#EE0000" />
+                    </Grid>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+
+        <StackLayout x:Name="LoadingLayout"
+                     HorizontalOptions="Center" 
+                     VerticalOptions="End" 
+                     IsVisible="{Binding IsLoading}">
+            <ActivityIndicator IsRunning="True" Color="White" />
+            <Label Text="Generating solutions..." 
+                   TextColor="Gray" 
+                   HorizontalOptions="Center" 
+                   FontSize="Small"
+                   FontAttributes="Bold" FontFamily="Monospace"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

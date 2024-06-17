@@ -8,7 +8,6 @@ namespace RubiksCubeSolver
 {
     public class RotationsChanges
     {
-
         public static void U(ref char[] _cubeStates)
         {
             char[] newCubeState = (char[])_cubeStates.Clone();

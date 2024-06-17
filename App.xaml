@@ -9,6 +9,13 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary>
+                <local:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+            </ResourceDictionary>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="#212426" />
+                <Setter Property="BarTextColor" Value="White"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

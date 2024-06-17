@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RubiksCubeSolver.HomePage"
+             BackgroundColor="#212426">
+
+    <StackLayout Padding="10" HorizontalOptions="Center" VerticalOptions="CenterAndExpand">
+        <Frame BackgroundColor="Black"
+               CornerRadius="10"
+               Padding="10"
+               Margin="20"
+               WidthRequest="300">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="10" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="10" />
+                    </Grid.ColumnDefinitions>
+
+                    <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="Yellow" CornerRadius="2" Margin="1" />
+                    <Frame Grid.Row="0" Grid.Column="1" BackgroundColor="Red" CornerRadius="2" Margin="1" />
+                    <Frame Grid.Row="0" Grid.Column="2" BackgroundColor="Blue" CornerRadius="2" Margin="1" />
+                    <Frame Grid.Row="1" Grid.Column="0" BackgroundColor="White" CornerRadius="2" Margin="1" />
+                    <Frame Grid.Row="1" Grid.Column="1" BackgroundColor="Orange" CornerRadius="2" Margin="1" />
+                    <Frame Grid.Row="1" Grid.Column="2" BackgroundColor="Green" CornerRadius="2" Margin="1" />
+                    <Frame Grid.Row="2" Grid.Column="0" BackgroundColor="Blue" CornerRadius="2" Margin="1" />
+                    <Frame Grid.Row="2" Grid.Column="1" BackgroundColor="Red" CornerRadius="2" Margin="1" />
+                    <Frame Grid.Row="2" Grid.Column="2" BackgroundColor="White" CornerRadius="2" Margin="1" />
+                </Grid>
+                <Label Text="Enter Colors"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       TextColor="White"
+                       FontSize="Medium"
+                       FontAttributes="Bold" 
+                       FontFamily="Monospace"
+                       Margin="10,0,0,0"/>
+            </StackLayout>
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnEnterCubeColorsClicked"/>
+            </Frame.GestureRecognizers>
+        </Frame>
+
+        <Frame BackgroundColor="Black"
+               CornerRadius="10"
+               Padding="10"
+               Margin="20">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <Frame BackgroundColor="White"
+                       CornerRadius="30"
+                       HeightRequest="30"
+                       WidthRequest="30"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Padding="0">
+                    <Label Text="i"
+                           FontSize="Medium"
+                           TextColor="Black"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           FontAttributes="Bold"
+                           FontFamily="Monospace"/>
+                </Frame>
+                <Label Text="Info"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       TextColor="White"
+                       FontSize="Medium"
+                       FontAttributes="Bold" 
+                       FontFamily="Monospace"
+                       Margin="10,0,0,0"/>
+            </StackLayout>
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnInfoClicked"/>
+            </Frame.GestureRecognizers>
+        </Frame>
+
+    </StackLayout>
+</ContentPage>
